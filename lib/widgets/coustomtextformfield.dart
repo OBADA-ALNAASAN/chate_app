@@ -14,6 +14,7 @@ class Coustomtextformfield extends StatelessWidget {
         if (value!.isEmpty) {
           return 'field is required';
         }
+        return null;
       },
       decoration: InputDecoration(
         hintText: hintText,
