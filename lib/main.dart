@@ -1,6 +1,5 @@
+import 'package:chat_app/cubits/Auth_cubit/auth_cubit.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
-import 'package:chat_app/cubits/register_cubit/register_cubit.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/login_page.dart';
 import 'package:chat_app/screens/register_page.dart';
@@ -26,8 +25,7 @@ class ScholerChat extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create:(context) =>LoginCubit()),
-        BlocProvider(create:(context) =>RegisterCubit()),
+        BlocProvider(create:(context) =>AuthCubit()),
         BlocProvider(create:(context) =>ChatCubit()),
       ],
       child: MaterialApp(

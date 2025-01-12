@@ -1,6 +1,6 @@
 import 'package:chat_app/constants.dart';
+import 'package:chat_app/cubits/Auth_cubit/auth_cubit.dart';
 import 'package:chat_app/cubits/chat_cubit/chat_cubit.dart';
-import 'package:chat_app/cubits/login_cubit/login_cubit.dart';
 import 'package:chat_app/helper/show_snackbar.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/screens/register_page.dart';
@@ -22,7 +22,7 @@ class LoginPage extends StatelessWidget {
 
     GlobalKey<FormState> formstate = GlobalKey();
     return SafeArea(
-      child: BlocConsumer<LoginCubit, LoginState>(
+      child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is Loginloding) {
             isLoading = true;
@@ -102,7 +102,7 @@ class LoginPage extends StatelessWidget {
                     CoustomButton(
                       onTap: () async {
                         if (formstate.currentState!.validate()) {
-                          BlocProvider.of<LoginCubit>(context)
+                          BlocProvider.of<AuthCubit>(context)
                               .loginUser(email: email!, password: password!);
                           BlocProvider.of<ChatCubit>(context).getMessages();
                         }

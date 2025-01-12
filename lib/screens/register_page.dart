@@ -1,7 +1,6 @@
-// ignore_for_file: use_build_context_synchronously
 
 import 'package:chat_app/constants.dart';
-import 'package:chat_app/cubits/register_cubit/register_cubit.dart';
+import 'package:chat_app/cubits/Auth_cubit/auth_cubit.dart';
 import 'package:chat_app/helper/show_snackbar.dart';
 import 'package:chat_app/screens/chat_page.dart';
 import 'package:chat_app/widgets/coustom_button.dart';
@@ -11,15 +10,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
-class RegisterPage extends StatefulWidget {
+class RegisterPage extends StatelessWidget {
   const RegisterPage({super.key});
   static String id = '/registerpage';
 
-  @override
-  State<RegisterPage> createState() => _RegisterPageState();
-}
-
-class _RegisterPageState extends State<RegisterPage> {
   @override
   Widget build(BuildContext context) {
     String? email;
@@ -27,7 +21,7 @@ class _RegisterPageState extends State<RegisterPage> {
     bool isLoading = false;
     GlobalKey<FormState> formstate = GlobalKey();
     return SafeArea(
-      child: BlocConsumer<RegisterCubit, RegisterState>(
+      child: BlocConsumer<AuthCubit, AuthState>(
         listener: (context, state) {
           if (state is Registerloding) {
             isLoading = true;
@@ -109,7 +103,7 @@ class _RegisterPageState extends State<RegisterPage> {
                         text: 'Register',
                         onTap: () async {
                           if (formstate.currentState!.validate()) {
-                            BlocProvider.of<RegisterCubit>(context)
+                            BlocProvider.of<AuthCubit>(context)
                                 .registerUser(email, password);
                           }
                         },
